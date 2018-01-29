@@ -8,4 +8,4 @@
 - Spring boot
 - Spring boot embedded Tomcat
 - Thymleaf
-- Spring Data Jpa (Hibernate as the implementation and in memory embedded as the database)
+- Spring Data Jpa with in memory H2 database
