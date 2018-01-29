@@ -1,11 +1,11 @@
-package com.appster.abdullah.config;
+package com.aslam.haris.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.appster.abdullah")
+@ComponentScan("com.aslam.haris")
 public class SpringBootWebApplication {
 
 	public static void main(String[] args) throws Exception {

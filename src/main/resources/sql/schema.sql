@@ -1,0 +1,1 @@
+--create table GRADE (id int not null, name varchar(20));

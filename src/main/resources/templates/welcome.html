@@ -1,46 +1,78 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Spring Boot Thymeleaf Hello World Example</title>
+<title>Todo App</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<link rel="stylesheet" type="text/css"
-	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-<link rel="stylesheet" th:href="@{/css/main.css}"
-	href="../../css/main.css" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous" />
 </head>
 <body>
-
-	<nav class="navbar navbar-inverse">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Spring Boot</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-				</ul>
-			</div>
+	<div class="container">
+		<div class="list-group" th:if="${not #lists.isEmpty(todoList)}">
+			<a href="#"
+				class="list-group-item list-group-item-action flex-column align-items-start active">
+				<div class="d-flex w-100 justify-content-between">
+					<h5 class="mb-1">My Todos</h5>
+					<small></small>
+				</div>
+				<p class="mb-1"></p> <small></small>
+			</a> <a th:each="todo : ${todoList}" href="#"
+				class="list-group-item list-group-item-action flex-column align-items-start">
+				<div class="d-flex w-100 justify-content-between">
+					<h5 class="mb-1" th:text="${todo.todoWork}"></h5>
+					<span th:if="${todo.status == false}">
+						<button type="button" class="btn btn-primary"
+							onclick="markAsComplete(event);" th:value="${todo.id}">Mark
+							as Complete</button>
+					</span> <span th:if="${todo.status == true}">
+						<button type="button" class="btn btn-success">Completed</button>
+						<button onclick="deleteTodo(event);" th:value="${todo.id}" type="button" class="btn btn-danger">Delete</button>
+					</span>
+				</div>
+				<p class="mb-1"></p> <small
+				class="text-muted"></small>
+			</a>
 		</div>
-	</nav>
+	</div>
 
 	<div class="container">
-
-		<div class="starter-template">
-			<h1>Spring Boot Web Thymeleaf Example</h1>
-			<h2>
-				<span th:text="'Message: ' + ${message}"></span>
-			</h2>
-		</div>
-
+		<form action="addTodo" method="post" th:object="${todo}">
+			<div class="form-group">
+				<label for="formGroupExampleInput">New Todo</label> <input
+					type="text" class="form-control" id="formGroupExampleInput"
+					placeholder="What are you planning to do" th:field="*{todoWork}" />
+			</div>
+			<input type="submit" name="Add" value="Add Todo" />
+		</form>
 	</div>
-	<!-- /.container -->
 
-	<script type="text/javascript"
-		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function markAsComplete(event) {
+			var myVal = event.target.value;
+			event.preventDefault();
+			$.ajax({
+				method : "POST",
+				url : "http://localhost:8080/todoApp/completed",
+				data: JSON.stringify(myVal),
+				contentType: "application/json; charset=utf-8",
+		        dataType: "json",
+			}).done(location.reload(true));
+		}
+		function deleteTodo(event) {
+			var myVal = event.target.value;
+			event.preventDefault();
+			$.ajax({
+				method : "POST",
+				url : "http://localhost:8080/todoApp/delete",
+				data: JSON.stringify(myVal),
+				contentType: "application/json; charset=utf-8",
+		        dataType: "json",
+			}).done(location.reload(true));
+		}
+	</script>
 
 </body>
 </html>

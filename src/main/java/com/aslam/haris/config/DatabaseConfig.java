@@ -1,4 +1,4 @@
-package com.appster.abdullah.config;
+package com.aslam.haris.config;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
@@ -7,9 +7,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EntityScan("com.appster.abdullah.entity")
-@EnableJpaRepositories("com.appster.abdullah.repository")
+@EntityScan("com.aslam.haris.entity")
+@EnableJpaRepositories("com.aslam.haris.repository")
 public class DatabaseConfig {
-
 
 }
