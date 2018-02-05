@@ -53,7 +53,7 @@ public class WelcomeController {
         todoRepository.save(todo);
         return "success";
     }
-    
+
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public String delete(@RequestBody int todoId) {
