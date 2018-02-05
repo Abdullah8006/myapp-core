@@ -4,3 +4,4 @@ target/
 .project
 ./hs_err_pi*
 logs/
+.springBeans
