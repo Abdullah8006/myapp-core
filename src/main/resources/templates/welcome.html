@@ -13,14 +13,14 @@
 <body>
 	<div class="container">
 		<div class="list-group" th:if="${not #lists.isEmpty(todoList)}">
-			<a href="#"
+			<a
 				class="list-group-item list-group-item-action flex-column align-items-start active">
 				<div class="d-flex w-100 justify-content-between">
 					<h5 class="mb-1">My Todos</h5>
 					<small></small>
 				</div>
 				<p class="mb-1"></p> <small></small>
-			</a> <a th:each="todo : ${todoList}" href="#"
+			</a> <a th:each="todo : ${todoList}"
 				class="list-group-item list-group-item-action flex-column align-items-start">
 				<div class="d-flex w-100 justify-content-between">
 					<h5 class="mb-1" th:text="${todo.todoWork}"></h5>
@@ -29,7 +29,7 @@
 							onclick="markAsComplete(event);" th:value="${todo.id}">Mark
 							as Complete</button>
 					</span> <span th:if="${todo.status == true}">
-						<button type="button" class="btn btn-success">Completed</button>
+						<button type="button" class="btn btn-success disabled">Completed</button>
 						<button onclick="deleteTodo(event);" th:value="${todo.id}"
 							type="button" class="btn btn-danger">Delete</button>
 					</span>
