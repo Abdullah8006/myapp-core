@@ -1,4 +1,4 @@
-package com.aslam.haris;
+package com.sample.abdullah;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

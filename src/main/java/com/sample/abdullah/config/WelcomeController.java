@@ -1,4 +1,4 @@
-package com.aslam.haris.config;
+package com.sample.abdullah.config;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.aslam.haris.entity.Todo;
-import com.aslam.haris.repository.TodoRepository;
+import com.sample.abdullah.entity.Todo;
+import com.sample.abdullah.repository.TodoRepository;
 
 @Controller
 public class WelcomeController {
