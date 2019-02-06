@@ -1,1 +1,0 @@
---insert into GRADE (id, name) values (2,  'name');

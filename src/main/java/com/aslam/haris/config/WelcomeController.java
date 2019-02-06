@@ -63,7 +63,9 @@ public class WelcomeController {
     }
 
     private List<Todo> getAllTodo() {
-        return todoRepository.findAll();
+    	List<Todo> todos = todoRepository.findAll();
+    	System.out.println(todos);
+        return todos;
     }
 
 }

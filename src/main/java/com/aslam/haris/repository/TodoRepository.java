@@ -8,5 +8,5 @@ import com.aslam.haris.entity.Todo;
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Integer> {
 
-    Todo findById(int id);
+	Todo findById(int id);
 }
