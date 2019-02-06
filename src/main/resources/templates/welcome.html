@@ -44,13 +44,43 @@
 			<div class="form-group">
 				<label for="formGroupExampleInput">New Todo</label> <input
 					type="text" class="form-control" id="formGroupExampleInput"
-					placeholder="What are you planning to do" th:field="*{todoWork}" />
+					placeholder="What are you planning to do" th:field="*{todoWork}"
+					value="" />
 			</div>
-			<input type="submit" name="Add" value="Add Todo" />
+			<input onclick="addToDo(event);" type="submit" name="Add"
+				value="Add Todo" />
 		</form>
 	</div>
 
 	<script type="text/javascript">
+		function addToDo(event) {
+			var myVal = document.getElementById("formGroupExampleInput").value;
+			console.log(myVal);
+			event.preventDefault();
+			if(myVal == '') {
+				alert("Enter a valid todo item.");
+				return false;
+			}
+
+			var requestData = { id: 0, status: false, todoWork: myVal };
+
+			$.ajax({
+			    type: 'POST',
+			    url: 'http://localhost:8080/todoApp/addTodo',
+			    contentType: "application/json; charset=utf-8",
+			    data: JSON.stringify(requestData)/* ,
+			    success: function (data) {
+			    	console.log("data returned");
+				    if(data == "success"){
+					    console.log("data returned successfully");
+			    		location.reload();
+				    }
+			    } */
+			}).done(function( data ) {
+				console.log( "Sample of data:", data );		
+				location.reload();																	
+		    });
+		}
 		function markAsComplete(event) {
 			var myVal = event.target.value;
 			event.preventDefault();
@@ -59,8 +89,10 @@
 				url : "http://localhost:8080/todoApp/completed",
 				data: JSON.stringify(myVal),
 				contentType: "application/json; charset=utf-8",
-		        dataType: "json",
-			}).done(location.reload(true));
+			}).done(function( data ) {
+				console.log( "Sample of data:", data );		
+				location.reload();																	
+		    });
 		}
 		function deleteTodo(event) {
 			var myVal = event.target.value;
@@ -70,8 +102,10 @@
 				url : "http://localhost:8080/todoApp/delete",
 				data: JSON.stringify(myVal),
 				contentType: "application/json; charset=utf-8",
-		        dataType: "json",
-			}).done(location.reload(true));
+			}).done(function( data ) {
+				console.log( "Sample of data:", data );		
+				location.reload();																	
+		    });
 		}
 	</script>
 
